@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="gbk"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="82fd7b0d-da06-4b00-b733-64c4433bff58">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="inoice_no" class="java.lang.String"/>
+	<field name="goods_name" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band splitType="Stretch"/>
+	</title>
+	<pageHeader>
+		<band height="76" splitType="Stretch">
+			<staticText>
+				<reportElement x="226" y="20" width="178" height="32" uuid="e707c76e-2169-4848-826b-c771626e0e5c"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="24"/>
+				</textElement>
+				<text><![CDATA[付款单]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="67" splitType="Stretch">
+			<line>
+				<reportElement x="47" y="38" width="469" height="1" uuid="86b1d3ee-5ec4-4452-9147-9b9a171a0c06"/>
+			</line>
+			<staticText>
+				<reportElement x="372" y="2" width="52" height="20" uuid="46b2dbc8-e6fe-4edb-b879-483eb6d1a1c0"/>
+				<textElement textAlignment="Right">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[票据号码：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="2" width="100" height="20" uuid="86864a82-7767-4457-abe9-9604995aec9f"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[Static text]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="104" y="2" width="100" height="20" uuid="5a402d6a-3f1d-4562-9d45-6f423c3a7310"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[goods_name]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="47" y="39" width="100" height="22" uuid="7d6b6c5e-36f6-42c2-bee8-7a9143713a50"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[物料名称]]></text>
+			</staticText>
+			<line>
+				<reportElement x="47" y="65" width="469" height="1" uuid="606fe4db-63b8-480c-a96d-3842e58192ff"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="23" splitType="Stretch">
+			<textField>
+				<reportElement x="47" y="0" width="100" height="20" uuid="728be38f-2c3d-4ec3-a455-5499024a2cba"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{goods_name}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="46" y="-29" width="1" height="28" uuid="dbe661f9-ff43-4a9f-b0bb-8e08114e661f"/>
+			</line>
+			<line>
+				<reportElement x="148" y="-29" width="1" height="28" uuid="a9b6ad78-02cc-4df8-92e4-3973c61e36b6"/>
+			</line>
+			<line>
+				<reportElement x="148" y="0" width="1" height="22" uuid="cac3a33b-1232-4749-80a7-9e932800d2c8"/>
+			</line>
+			<line>
+				<reportElement x="46" y="0" width="1" height="22" uuid="55e3039f-8f1b-488d-921c-32d3d4ba90d8"/>
+			</line>
+			<line>
+				<reportElement x="47" y="22" width="469" height="1" uuid="d086f865-e9a3-4772-b05f-c7b75c45221d"/>
+			</line>
+			<textField>
+				<reportElement x="176" y="0" width="102" height="22" uuid="c9e98112-97e2-42bd-ae04-7b31338bceff"/>
+				<textElement>
+					<font fontName="宋体" pdfFontName="STSong-Light" pdfEncoding="UniGB-UCS2-H" isPdfEmbedded="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{inoice_no}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement x="46" y="0" width="34" height="20" uuid="764cc702-b41f-4045-983e-1772bb8af838"/>
+				<textElement textAlignment="Right">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[制单：]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>
