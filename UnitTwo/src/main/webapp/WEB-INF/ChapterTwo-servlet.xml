@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-       xmlns:p="http://www.springframework.org/schema/p"
        xsi:schemaLocation="http://www.springframework.org/schema/beans
 	   		http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
@@ -17,7 +16,199 @@
         <property name="suffix" value=".jsp"/>
     </bean>
 
-    <bean name="/hello" class="com.ycsoft.chapter2.controller.HelloWorldController"></bean>
+    <bean name="/hello" class="com.ycsoft.controller.HelloWorldController"/>
+
+    <bean name="/hello2" class="com.ycsoft.controller.HelloWorldController2"/>
+
+    <bean name="/helloWithPost" class="com.ycsoft.controller.HelloWorldController2">
+        <property name="supportedMethods" value="POST"/>
+    </bean>
+
+    <bean name="/helloRequireSession" class="com.ycsoft.controller.HelloWorldController2">
+        <property name="requireSession" value="true"/>
+    </bean>
+
+    <bean name="/withoutReturn" class="com.ycsoft.controller.HelloWorldWithoutReturnModelAndViewController"/>
 
 
+    <bean name="/helloCache" class="com.ycsoft.controller.HelloWorldCacheController">
+        <!--缓存5秒-->
+        <!--<property name="cacheSeconds" value="5"/>-->
+        <!--不缓存，cacheSeconds=0-->
+        <property name="cacheSeconds" value="0"/>
+    </bean>
+
+    <bean name="/helloLastModified" class="com.ycsoft.controller.HelloWorldLastModifiedCacheController"/>
+
+    <bean name="/forwardToServlet" class="org.springframework.web.servlet.mvc.ServletForwardingController">
+        <property name="servletName" value="forwarding"/>
+    </bean>
+
+    <bean name="/abstractCommand" class="com.ycsoft.controller.MyAbstractCommandController">
+        <!-- 也可以通过依赖注入 注入命令实现类 -->
+        <property name="commandClass" value="com.ycsoft.model.UserModel"/>
+    </bean>
+
+    <bean name="/simpleForm" class="com.ycsoft.controller.RegisterSimpleFormController">
+        <property name="formView" value="register"/>
+        <property name="successView" value="redirect:/success"/>
+    </bean>
+
+    <bean name="/success" class="com.ycsoft.controller.SuccessController"/>
+    <bean name="/cancel" class="com.ycsoft.controller.CancelController"/>
+
+    <bean name="/canCancelForm" class="com.ycsoft.controller.CanCancelRegisterSimpleFormController">
+        <property name="formView" value="register"/>
+        <property name="successView" value="redirect:/success"/>
+        <property name="cancelView" value="redirect:/cancel"/>
+    </bean>
+
+    <bean name="/infoFillWizard" class="com.ycsoft.controller.InfoFillWizardFormController">
+        <property name="pages">
+            <list>
+                <value>wizard/baseInfo</value>
+                <value>wizard/schoolInfo</value>
+                <value>wizard/workInfo</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean name="/parameterizableView" class="org.springframework.web.servlet.mvc.ParameterizableViewController">
+        <!-- value表示jsp文件相对路径 -->
+        <property name="viewName" value="/wizard/success"/>
+    </bean>
+
+    <bean name="/index?" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean name="/index1/*" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean name="/index2/**" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean name="/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean name="/index3/*.html" class="org.springframework.web.servlet.mvc.UrlFilenameViewController"/>
+    <bean name="/*.htm" class="org.springframework.web.servlet.mvc.UrlFilenameViewController">
+        <property name="prefix" value="test"/>
+        <property name="suffix" value="test"/>
+    </bean>
+
+    <!-- 使用InternalPathMethodNameResolver来解析功能处理方法名 -->
+    <!--<bean id="userService" class="com.ycsoft.service.UserService"/>
+
+    <bean name="/user/**" class="com.ycsoft.controller.UserController">
+        <property name="userService" ref="userService"/>
+        <property name="createView" value="user/create"/>
+        <property name="updateView" value="user/update"/>
+        <property name="deleteView" value="user/delete"/>
+        <property name="listView" value="user/list"/>
+        <property name="redirectToListView" value="redirect:/user/list"/>
+    </bean>-->
+
+
+    <!-- 使用PropertiesMethodNameResolver来解析功能处理方法名 -->
+    <!--<bean id="userService" class="com.ycsoft.service.UserService"/>
+
+    <bean name="/user/**" class="com.ycsoft.controller.UserController">
+        <property name="userService" ref="userService"/>
+        <property name="createView" value="user/create"/>
+        <property name="updateView" value="user/update"/>
+        <property name="deleteView" value="user/delete"/>
+        <property name="listView" value="user/list"/>
+        <property name="redirectToListView" value="redirect:/user/list"/>
+        <property name="methodNameResolver" ref="propertiesMethodNameResolver"/>
+    </bean>
+
+    <bean id="propertiesMethodNameResolver"
+          class="org.springframework.web.servlet.mvc.multiaction.PropertiesMethodNameResolver">
+        <property name="mappings">
+            <props>
+                <prop key="/user/create">create</prop>
+                <prop key="/user/update">update</prop>
+                <prop key="/user/delete">delete</prop>
+                <prop key="/user/list">list</prop>
+                &lt;!&ndash; 默认的行为 &ndash;&gt;
+                <prop key="/**">list</prop>
+            </props>
+        </property>
+        <property name="alwaysUseFullPath" value="false"/>&lt;!&ndash; 不使用全路径 &ndash;&gt;
+    </bean>-->
+
+
+    <!-- 使用ParameterMethodNameResolver来解析功能处理方法名 开始-->
+    <bean id="userService" class="com.ycsoft.service.UserService"/>
+    <!--委托对象-->
+    <bean id="userDelegate" class="com.ycsoft.controller.UserDelegate">
+        <property name="userService" ref="userService"/>
+        <property name="createView" value="user2/create"/>
+        <property name="updateView" value="user2/update"/>
+        <property name="deleteView" value="user2/delete"/>
+        <property name="listView" value="user2/list"/>
+        <property name="redirectToListView" value="redirect:/user2/list"/>
+    </bean>
+    <!--控制对象-->
+    <bean name="/user2/**"
+          class="org.springframework.web.servlet.mvc.multiaction.MultiActionController">
+        <property name="delegate" ref="userDelegate"/>
+        <property name="methodNameResolver" ref="parameterMethodNameResolver"/>
+    </bean>
+
+
+    <bean id="parameterMethodNameResolver"
+          class="org.springframework.web.servlet.mvc.multiaction.ParameterMethodNameResolver">
+        <!-- 1、根据请求参数名解析功能方法名 -->
+        <property name="methodParamNames" value="create,update,delete"/>
+        <!-- 2、根据请求参数名的值解析功能方法名 -->
+        <property name="paramName" value="action"/>
+        <!-- 3、逻辑方法名到真实方法名的映射 -->
+        <property name="logicalMappings">
+            <props>
+                <prop key="doList">list</prop>
+            </props>
+        </property>
+        <property name="defaultMethodName" value="list"/>
+    </bean>
+    <!-- 使用ParameterMethodNameResolver来解析功能处理方法名 结束-->
+
+    <!--模式一-->
+    <!--<bean name="/dataBind" class="com.ycsoft.controller.DataBinderTestController"/>-->
+
+    <!--模式二-->
+    <!--
+   <bean id="myWebBindingInitializer" class="com.ycsoft.controller.support.initializer.MyWebBindingInitializer"/>
+   <bean name="/dataBind" class="com.ycsoft.controller.DataBinderTestController">
+       <property name="webBindingInitializer" ref="myWebBindingInitializer"/>
+   </bean>-->
+
+
+    <!--模式三 全局级别注册PropertyEditor（全局共享） -->
+    <bean name="/dataBind" class="com.ycsoft.controller.DataBinderTestController"/>
+
+
+    <bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+        <property name="basename" value="classpath:messages"/>
+        <property name="fileEncodings" value="utf-8"/>
+        <property name="cacheSeconds" value="120"/>
+    </bean>
+
+    <bean name="/error" class="com.ycsoft.controller.ErrorController"/>
+
+    <bean name="/dataBindError" class="com.ycsoft.controller.DataBinderErrorTestController">
+        <property name="formView" value="bindAndValidate/input"/>
+        <property name="successView" value="bindAndValidate/success"/>
+    </bean>
+
+
+
+    <bean id="userModelValidator" class="com.ycsoft.controller.support.validator.UserModelValidator"/>
+    <bean name="/validator" class="com.ycsoft.controller.RegisterSimpleFormController">
+        <property name="formView" value="registerAndValidator"/>
+        <property name="successView" value="redirect:/success"/>
+        <property name="validator" ref="userModelValidator"/>
+    </bean>
+
+
+    <bean name="/userAndValidator/**" class="com.ycsoft.controller.UserAndValidatorController">
+        <property name="userService" ref="userService"/>
+        <property name="createView" value="user/createAndValidator"/>
+        <property name="updateView" value="user/update"/>
+        <property name="deleteView" value="user/delete"/>
+        <property name="listView" value="user/list"/>
+        <property name="redirectToListView" value="redirect:/user/list"/>
+    </bean>
 </beans>

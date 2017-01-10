@@ -7,6 +7,29 @@
 
     <display-name>Archetype Created Web Application</display-name>
 
+
+    <context-param>
+        <param-name>webAppRootKey</param-name>
+        <param-value>webApp.root</param-value>
+    </context-param>
+    <context-param>
+        <param-name>log4jConfigLocation</param-name>
+        <param-value>classpath:log4j.properties</param-value>
+    </context-param>
+    <listener>
+        <listener-class>org.springframework.web.util.Log4jConfigListener</listener-class>
+    </listener>
+
+    <filter>
+        <filter-name>etagFilter</filter-name>
+        <filter-class>org.springframework.web.filter.ShallowEtagHeaderFilter</filter-class>
+    </filter>
+    <filter-mapping>
+        <filter-name>etagFilter</filter-name>
+        <servlet-name>ChapterTwo</servlet-name>
+    </filter-mapping>
+
+
     <filter>
         <filter-name>CharacterEncodingFilter</filter-name>
         <filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -29,5 +52,14 @@
     <servlet-mapping>
         <servlet-name>ChapterTwo</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>forwarding</servlet-name>
+        <servlet-class>com.ycsoft.sevlet.ForwardingServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>forwarding</servlet-name>
+        <url-pattern>/forwarding</url-pattern>
     </servlet-mapping>
 </web-app>

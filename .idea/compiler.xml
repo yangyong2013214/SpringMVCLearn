@@ -24,6 +24,7 @@
         <processorPath useClasspath="true" />
         <module name="JasperReportsDemo" />
         <module name="UnitOne" />
+        <module name="UnitThree" />
         <module name="UnitTwo" />
         <module name="UnitZero" />
       </profile>
@@ -33,6 +34,7 @@
       <module name="PDFPreview" target="1.5" />
       <module name="SpringMVCLearn" target="1.5" />
       <module name="UnitOne" target="1.5" />
+      <module name="UnitThree" target="1.5" />
       <module name="UnitTwo" target="1.5" />
       <module name="UnitZero" target="1.5" />
     </bytecodeTargetLevel>

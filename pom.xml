@@ -10,6 +10,7 @@
     <module>UnitTwo</module>
     <module>JasperReportsDemo</module>
     <module>UnitZero</module>
+    <module>UnitThree</module>
   </modules>
   <name>SpringMVCLearn Maven Webapp</name>
   <url>http://maven.apache.org</url>
