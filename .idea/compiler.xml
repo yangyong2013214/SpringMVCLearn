@@ -23,16 +23,17 @@
         <outputRelativeToContentRoot value="true" />
         <processorPath useClasspath="true" />
         <module name="JasperReportsDemo" />
+        <module name="UnitFour" />
         <module name="UnitOne" />
         <module name="UnitThree" />
         <module name="UnitTwo" />
         <module name="UnitZero" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
+    <bytecodeTargetLevel target="1.7">
       <module name="JasperReportsDemo" target="1.5" />
-      <module name="PDFPreview" target="1.5" />
       <module name="SpringMVCLearn" target="1.5" />
+      <module name="UnitFour" target="1.5" />
       <module name="UnitOne" target="1.5" />
       <module name="UnitThree" target="1.5" />
       <module name="UnitTwo" target="1.5" />
