@@ -22,7 +22,7 @@ public class CookieValueTypeController {
     
     @RequestMapping(value="/cookie2")
     public String test2(@CookieValue(value="JSESSIONID", defaultValue="") Cookie sessionId) {
-        
+        System.out.println(sessionId);
         System.out.println(sessionId.getName());
         
         return "success";

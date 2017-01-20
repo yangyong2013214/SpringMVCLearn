@@ -12,6 +12,7 @@
     <module>UnitZero</module>
     <module>UnitThree</module>
     <module>UnitFour</module>
+    <module>UnitFive</module>
   </modules>
   <name>SpringMVCLearn Maven Webapp</name>
   <url>http://maven.apache.org</url>

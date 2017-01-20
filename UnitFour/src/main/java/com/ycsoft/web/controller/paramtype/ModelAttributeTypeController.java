@@ -36,6 +36,7 @@ public class ModelAttributeTypeController {
     @RequestMapping(value="/model1") //②
     public String test1(@ModelAttribute("user") UserModel user, Model model) {
         System.out.println(model.containsAttribute("cityList"));
+        System.out.println(model.containsAttribute("user"));
         System.out.println(user);
         return "success";
     }

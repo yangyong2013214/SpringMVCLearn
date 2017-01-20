@@ -111,6 +111,8 @@ public class MethodParamTypeController {
     
     @RequestMapping(value = "/error1")
     public String error1(UserModel user, BindingResult result) {
+        System.out.println(user);
+        System.out.println(result.toString());
         return "success";
     }
     
